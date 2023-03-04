@@ -3,18 +3,28 @@ buildscript {
         mavenCentral()
     }
 }
+
 plugins {
     id 'java-library'
-    id("io.freefair.lombok") version "6.6.3"
+    id("io.freefair.lombok") version "6.6.3" apply false
 }
 
-compileJava {
-    options.release = 11
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
 }
 
-repositories {
-    mavenCentral()
-    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-}
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
+jar.enabled = false
+build.enabled = false
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+}
