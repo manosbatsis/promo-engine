@@ -1,0 +1,10 @@
+
+dependencies {
+    api project(':promo-engine-api')
+    dependencies {
+        implementation(platform("org.junit:junit-bom:$junitBomVersion"))
+        implementation('org.junit.jupiter:junit-jupiter-api')
+        implementation("org.hamcrest:java-hamcrest:$hamcrestVersion")
+
+    }
+}

@@ -1,4 +1,3 @@
 package com.github.manosbatsis.promo.engine.api;
 
-public interface Order extends OrderLines, Discounted {
-}
+public interface Order extends OrderLines, Discounted {}

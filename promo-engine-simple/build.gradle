@@ -1,4 +1,5 @@
 
 dependencies {
     api project(':promo-engine-api')
+    testImplementation(project(':promo-engine-test'))
 }

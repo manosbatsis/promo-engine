@@ -1,3 +1,4 @@
 
 include ':promo-engine-api'
 include ':promo-engine-simple'
+include ':promo-engine-test'
