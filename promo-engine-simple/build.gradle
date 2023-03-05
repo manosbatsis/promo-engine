@@ -1,18 +1,4 @@
-plugins {
-    id 'java-library'
-    id("io.freefair.lombok")
-}
 
 dependencies {
     api project(':promo-engine-api')
-
-    testImplementation(platform('org.junit:junit-bom:5.9.2'))
-    testImplementation('org.junit.jupiter:junit-jupiter')
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
 }
