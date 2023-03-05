@@ -1,9 +1,11 @@
 package com.github.manosbatsis.promo.engine.api;
 
-import java.util.Map;
+import java.util.SortedMap;
 
 public interface OrderItems {
-    public Map<String, OrderItem> getItems();
-    public Integer addItems(Sku sku, Integer items);
-    public Integer removeItems(Sku sku, Integer items);
+    public SortedMap<String, OrderItem> getItems();
+    public Integer getUnits(Sku sku);
+
+    public Integer addUnits(Sku sku, Integer units);
+    public Integer removeUnits(Sku sku, Integer units);
 }

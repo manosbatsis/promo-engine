@@ -1,5 +1,5 @@
 package com.github.manosbatsis.promo.engine.api;
 
-public interface PromotionEngine {
-    public Order applyPromotions(OrderItems items);
+public interface PromotionEngine<IN extends OrderItems, OUT extends Order> {
+    public OUT applyPromotions(IN items);
 }
