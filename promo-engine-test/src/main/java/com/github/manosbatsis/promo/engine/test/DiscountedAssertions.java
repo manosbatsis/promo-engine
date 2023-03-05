@@ -11,6 +11,10 @@ public class DiscountedAssertions {
     assertThat(actual.getDiscountedPrice(), Matchers.comparesEqualTo(expected));
   }
 
+  public static void assertDiscountedPrice(Integer expected, Discounted actual) {
+    assertDiscountedPrice(BigDecimal.valueOf(expected), actual);
+  }
+
   public static void assertDiscountedPrice(Long expected, Discounted actual) {
     assertDiscountedPrice(BigDecimal.valueOf(expected), actual);
   }

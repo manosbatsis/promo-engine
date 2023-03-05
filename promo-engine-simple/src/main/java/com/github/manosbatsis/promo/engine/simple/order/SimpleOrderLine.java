@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 
 @EqualsAndHashCode
 public class SimpleOrderLine implements OrderLine {
@@ -22,5 +23,14 @@ public class SimpleOrderLine implements OrderLine {
   @Override
   public List<OrderItem> getOrderItems() {
     return null;
+  }
+
+  @Override
+  @NonNull
+  public Integer getSkuUnits(@NonNull String skuId) {
+    for (OrderItem item : getOrderItems()) {
+      if (skuId == item.getSku().getId()) return item.getUnits();
+    }
+    return 0;
   }
 }

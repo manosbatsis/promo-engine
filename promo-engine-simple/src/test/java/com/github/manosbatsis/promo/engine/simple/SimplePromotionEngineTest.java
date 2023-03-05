@@ -1,14 +1,18 @@
 package com.github.manosbatsis.promo.engine.simple;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.github.manosbatsis.promo.engine.test.DiscountedAssertions.*;
+import static com.github.manosbatsis.promo.engine.test.OrderAssertions.*;
 
 import com.github.manosbatsis.promo.engine.api.Order;
 import com.github.manosbatsis.promo.engine.api.PromotionEngine;
 import com.github.manosbatsis.promo.engine.simple.promotion.ProductQuantityFixedPricePromotion;
 import com.github.manosbatsis.promo.engine.simple.promotion.ProductsBundleFixedPricePromotion;
+import com.github.manosbatsis.promo.engine.test.ExpectOrderLine;
+import com.github.manosbatsis.promo.engine.test.ExpectSkuItems;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class SimplePromotionEngineTest {
@@ -45,10 +49,17 @@ public class SimplePromotionEngineTest {
             .withAddedUnits(productB, 1)
             .withAddedUnits(productC, 1);
     Order order = engine.applyPromotions(cart);
-    assertEquals(100, order.getDiscountedPrice());
+    // Check line-by-line
+    List<ExpectOrderLine> expectedLines =
+        Arrays.asList(
+            ExpectOrderLine.of(50, ExpectSkuItems.of("A", 1)),
+            ExpectOrderLine.of(30, ExpectSkuItems.of("B", 1)),
+            ExpectOrderLine.of(20, ExpectSkuItems.of("C", 1)));
+    // Check total
+    assertDiscountedPrice(100, order);
   }
 
-  /** Scenario B: 5 * A 130 + 2*50, 5 * B 45 + 45 + 30, 1 * C 28 Total 370 */
+  /** Scenario B: 5 * A 130 + 2*50, 5 * B 45 + 45 + 30, 1 * C 20 Total 370 */
   @Test
   void Scenario_B() {
     Cart cart =
@@ -57,7 +68,17 @@ public class SimplePromotionEngineTest {
             .withAddedUnits(productB, 5)
             .withAddedUnits(productC, 1);
     Order order = engine.applyPromotions(cart);
-    assertEquals(370, order.getDiscountedPrice());
+    // Check line-by-line
+    List<ExpectOrderLine> expectedLines =
+        Arrays.asList(
+            ExpectOrderLine.of(130, ExpectSkuItems.of("A", 3)),
+            ExpectOrderLine.of(2 * 50, ExpectSkuItems.of("A", 2)),
+            ExpectOrderLine.of(45 + 45, ExpectSkuItems.of("B", 4)),
+            ExpectOrderLine.of(30, ExpectSkuItems.of("B", 1)),
+            ExpectOrderLine.of(30, ExpectSkuItems.of("C", 1), ExpectSkuItems.of("D", 1)));
+    assertOrderLinesMatch(expectedLines, order);
+    // Check total
+    assertDiscountedPrice(370, order);
   }
 
   /** Scenario C: 3 * A 130, 5 * B 45 + 45 + 1 * 30, 1 * C & 1 * D 30 Total 280 */
@@ -70,6 +91,15 @@ public class SimplePromotionEngineTest {
             .withAddedUnits(productC, 1)
             .withAddedUnits(productD, 1);
     Order order = engine.applyPromotions(cart);
-    assertEquals(280, order.getDiscountedPrice());
+    // Check line-by-line
+    List<ExpectOrderLine> expectedLines =
+        Arrays.asList(
+            ExpectOrderLine.of(130, ExpectSkuItems.of("A", 3)),
+            ExpectOrderLine.of(45 + 45, ExpectSkuItems.of("B", 4)),
+            ExpectOrderLine.of(30, ExpectSkuItems.of("B", 1)),
+            ExpectOrderLine.of(20, ExpectSkuItems.of("C", 1)));
+    assertOrderLinesMatch(expectedLines, order);
+    // Check total
+    assertDiscountedPrice(280, order);
   }
 }
