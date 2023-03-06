@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface OrderLines {
   public List<OrderLine> getLines();
+
+  public void addLine(OrderLine line);
 }

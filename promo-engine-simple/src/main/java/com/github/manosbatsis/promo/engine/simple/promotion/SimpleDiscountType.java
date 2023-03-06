@@ -1,7 +1,9 @@
 package com.github.manosbatsis.promo.engine.simple.promotion;
 
 import com.github.manosbatsis.promo.engine.api.DiscountType;
+import lombok.ToString;
 
+@ToString(includeFieldNames = false)
 public enum SimpleDiscountType implements DiscountType {
   FIXED_PRICE(10, "Fixed price"),
   TOTAL_FIXED_PRICE(20, "Total fixed price"),

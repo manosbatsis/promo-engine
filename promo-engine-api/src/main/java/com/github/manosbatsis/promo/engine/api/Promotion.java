@@ -6,4 +6,6 @@ public interface Promotion {
   public PromotionPriority getPromotionPriority();
 
   public DiscountType getDiscountType();
+
+  public void apply(OrderLineSkus applyTo, Order addTo);
 }

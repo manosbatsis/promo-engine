@@ -1,6 +1,6 @@
 package com.github.manosbatsis.promo.engine.api;
 
-public interface OrderItem {
+public interface OrderLineSku extends Comparable<OrderLineSku> {
   public Sku getSku();
 
   public Integer getUnits();

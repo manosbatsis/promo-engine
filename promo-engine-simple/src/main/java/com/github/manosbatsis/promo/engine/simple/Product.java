@@ -7,6 +7,7 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode
 @AllArgsConstructor
+@ToString
 public class Product implements Sku {
 
   private String id;

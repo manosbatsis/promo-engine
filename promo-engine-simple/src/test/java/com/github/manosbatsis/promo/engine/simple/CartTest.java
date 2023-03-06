@@ -13,14 +13,14 @@ public class CartTest {
   void Add_PositiveUnits_UpdatesNumber() {
     Cart cart = new Cart().withAddedUnits(fooProduct, 1);
     cart.addUnits(fooProduct, 9);
-    assertEquals(cart.getUnits(fooProduct), 10);
+    assertEquals(cart.getUnitsBySku(fooProduct), 10);
   }
 
   @Test
   void Remove_PositiveUnits_UpdatesNumber() {
     Cart cart = new Cart().withAddedUnits(fooProduct, 10);
     cart.removeUnits(fooProduct, 9);
-    assertEquals(cart.getUnits(fooProduct), 1);
+    assertEquals(cart.getUnitsBySku(fooProduct), 1);
   }
 
   @Test

@@ -13,17 +13,17 @@ public class OrderLineAssertions {
     assertNotNull(actual, "Expected an order line with single SKU but got null");
     assertEquals(
         1,
-        actual.getOrderItems().size(),
+        actual.getOrderLineSkus().size(),
         "Expected an order line with single SKU but got multiple");
-    assertEquals(expected, actual.getOrderItems().get(0).getSku().getId());
+    assertEquals(expected, actual.getOrderLineSkus().get(0).getSku().getId());
   }
 
   public static void assertLineSkuItemsMatch(
-          @NonNull List<ExpectSkuItems> expected, OrderLine actual) {
+      @NonNull List<ExpectSkuItems> expected, OrderLine actual) {
     assertNotNull(actual, "Expected an order line but got null");
     for (int idx = 0; idx < expected.size(); idx++) {
       ExpectSkuItems expectedLine = expected.get(idx);
-      assertEquals(expectedLine.getUnits(), actual.getSkuUnits(expectedLine.getSkuId()));
+      assertEquals(expectedLine.getUnits(), actual.getUnitsForSku(expectedLine.getSkuId()));
     }
   }
 

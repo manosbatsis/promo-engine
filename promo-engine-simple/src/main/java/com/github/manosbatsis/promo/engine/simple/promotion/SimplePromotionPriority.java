@@ -1,7 +1,9 @@
 package com.github.manosbatsis.promo.engine.simple.promotion;
 
 import com.github.manosbatsis.promo.engine.api.PromotionPriority;
+import lombok.ToString;
 
+@ToString(includeFieldNames = false)
 public enum SimplePromotionPriority implements PromotionPriority {
   GLOBAL_EXCLUSIVE(10, "Global Exclusive"),
   CLASS_EXCLUSIVE_PRODUCT(20, "Class Exclusive Product"),

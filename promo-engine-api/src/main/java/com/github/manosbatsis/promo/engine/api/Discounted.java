@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 public interface Discounted {
-  public Set<String> getAppliedPromotions();
 
+  /** Retrieve the IDs of all [Promotion] applied at this level */
+  public Set<Promotion> getAppliedPromotions();
+
+  /** Retrieve the discounted price for this level */
   public BigDecimal getDiscountedPrice();
 }
