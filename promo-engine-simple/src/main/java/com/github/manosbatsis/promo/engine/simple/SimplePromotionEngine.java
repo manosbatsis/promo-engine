@@ -12,9 +12,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * A simple, stateless {@link PromotionEngine} implementation.
- */
+/** A simple, stateless {@link PromotionEngine} implementation. */
 @Slf4j
 @RequiredArgsConstructor
 public class SimplePromotionEngine implements PromotionEngine<Cart, SimpleOrder> {
